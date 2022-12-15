@@ -1,4 +1,10 @@
 Часть кода взята из ресурсов https://github.com/dfederschmidt/fasttext-server и https://github.com/messense/fasttext-serving
+
+Одна из попыток сделать fasttext работающим в приложении flask. 
+
+![График нагрузки с полной моделью](./Load_to_Big_model.png)
+
+
 /words"
 def words():
 
