@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "levenshtein-corrector.fullname" . }}
+  labels:
+    {{- include "levenshtein-corrector.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "levenshtein-corrector.selectorLabels" . | nindent 4 }}

@@ -1,0 +1,20 @@
+FROM python:3.9.10
+
+COPY requirements.txt ./
+COPY levenshtein_corrector_ru.json /root
+RUN pip3 install -r requirements.txt &&\
+    mkdir -p /root/.deeppavlov/downloads/vocabs &&\
+    mkdir -p /root/.deeppavlov/downloads/language_models
+WORKDIR /root/.deeppavlov/downloads/vocabs
+RUN apt-get update &&\
+    apt-get install wget gzip -y &&\
+    wget http://files.deeppavlov.ai/deeppavlov_data/vocabs/russian_words_vocab.dict.gz &&\
+    gzip -d russian_words_vocab.dict.gz
+
+WORKDIR /root/.deeppavlov/downloads/language_models
+RUN wget http://files.deeppavlov.ai/lang_models/ru_wiyalen_no_punkt.arpa.binary.gz &&\
+    gzip -d ru_wiyalen_no_punkt.arpa.binary.gz
+
+EXPOSE 5000
+
+CMD python -m deeppavlov riseapi /root/levenshtein_corrector_ru.json -d -p 5000
