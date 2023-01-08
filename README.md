@@ -7,3 +7,14 @@
 
 - [vosk-server](./vosk-server/) -  чарт для запуска vosk-server, который работает в качестве websocket, в случае kubernetes по факту используется service. Node_port включен для проведения тестов запуска за пределами среды kubernetes. код проекта https://github.com/alphacep/vosk-server
 
+        Собраны следующие образы:
+
+        - itforever/vosk-server-small:0.22  - мобильный датасет при запуске потребляет 150 мб
+        
+        - itforever/vosk-server:0.0-ru
+
+        - itforever/vosk-server:0.22
+
+
+
+
